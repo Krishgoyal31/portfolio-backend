@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krish Goyal - Updates</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+</head>
+<body data-page="notifications">
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"></div>
+    <div class="custom-cursor-follower"></div>
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="preloader-text">
+            <span class="char-k">K</span><span class="char-g">G</span>
+        </div>
+    </div>
+
+    <!-- Page Transition Overlay -->
+    <div id="page-transition-overlay"></div>
+
+    <!-- Notifications Page Background Animation Elements (Floating Cubes) -->
+    <div class="notifications-animated-background">
+        <div class="animated-cube cube-1"></div>
+        <div class="animated-cube cube-2"></div>
+        <div class="animated-cube cube-3"></div>
+        <div class="animated-cube cube-4"></div>
+        <div class="animated-cube cube-5"></div>
+        <div class="animated-cube cube-6"></div>
+    </div>
+    
+    <!-- Main Content -->
+    <header class="main-header">
+        <nav class="navbar">
+            <a href="#" class="nav-logo" id="adminLoginTrigger">KG</a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-item" data-text="Home">Home</a></li>
+                <li><a href="about.html" class="nav-item" data-text="About">About</a></li>
+                <li><a href="projects.html" class="nav-item" data-text="Projects">Projects</a></li>
+                <li><a href="resume.html" class="nav-item" data-text="Resume">Resume</a></li>
+                <li><a href="notifications.html" class="nav-item active" data-text="Updates">Updates</a></li>
+                <li><a href="contact.html" class="nav-item" data-text="Contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="notifications-page-content container">
+        <section class="notifications-hero section-spacing">
+            <h2 class="section-title" data-aos="fade-right" data-aos-delay="200">
+                <span class="title-accent"></span> My Updates
+            </h2>
+            <p class="section-subtitle" data-aos="fade-left" data-aos-delay="400">Stay informed about new projects, features, and important announcements.</p>
+
+            <div id="notificationsGrid" class="notifications-grid">
+                <!-- Notification Cards will be loaded dynamically here -->
+                <p class="section-subtitle no-notifications-message">No updates yet. Check back soon!</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="glowing-back-to-top"><i class="fas fa-arrow-up"></i></button>
+
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="assets/js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const notificationsGrid = document.getElementById('notificationsGrid');
+            
+            try {
+                const response = await fetch(`${BASE_API_URL}/notifications`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const notifications = await response.json();
+
+                if (notifications && notifications.length > 0) {
+                    notificationsGrid.innerHTML = ''; // Clear the "No updates yet" message
+
+                    notifications.forEach((notification, index) => {
+                        const notificationCard = document.createElement('div');
+                        notificationCard.classList.add('notification-card', 'glowing-border', 'glassmorphism');
+                        notificationCard.setAttribute('data-aos', 'fade-up');
+                        notificationCard.setAttribute('data-aos-delay', (index * 100 + 500).toString()); // Stagger delay
+
+                        notificationCard.innerHTML = `
+                            <div class="notification-icon">
+                                <i class="${notification.iconClass} ${notification.accentClass}"></i>
+                            </div>
+                            <div class="notification-content">
+                                <h3>${notification.title}</h3>
+                                <p>${notification.content}</p>
+                                <span class="notification-date">${notification.date}</span>
+                            </div>
+                        `;
+                        notificationsGrid.appendChild(notificationCard);
+                    });
+                    AOS.refresh(); // Refresh AOS to detect new elements
+                } else {
+                    notificationsGrid.innerHTML = '<p class="section-subtitle no-notifications-message">No updates yet. Check back soon!</p>';
+                }
+            } catch (error) {
+                console.error('Error fetching notifications:', error);
+                notificationsGrid.innerHTML = '<p class="section-subtitle no-notifications-message">Failed to load updates. Please check the backend server.</p>';
+            }
+
+            // Reset the new updates counter when the updates page is visited
+            localStorage.setItem('newUpdatesCounter', '0');
+            if (typeof window.updateNotificationCountBadge === 'function') {
+                window.updateNotificationCountBadge(); // Update the nav badge immediately
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krish Goyal - Admin Panel</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+</head>
+<body data-page="admin">
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"></div>
+    <div class="custom-cursor-follower"></div>
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="preloader-text">
+            <span class="char-k">K</span><span class="char-g">G</span>
+        </div>
+    </div>
+
+    <!-- Page Transition Overlay -->
+    <div id="page-transition-overlay"></div>
+
+    <!-- Admin Page Background Animation (Using a generic background for simplicity) -->
+    <div class="home-animated-background">
+        <div class="animated-orb orb-1"></div>
+        <div class="animated-orb orb-2"></div>
+        <div class="animated-orb orb-3"></div>
+        <div class="animated-orb orb-4"></div>
+    </div>
+
+    <!-- Main Content -->
+    <header class="main-header">
+        <nav class="navbar">
+            <a href="#" class="nav-logo" id="adminPanelLogo">KG</a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-item" data-text="Home">Home</a></li>
+                <li><a href="about.html" class="nav-item" data-text="About">About</a></li>
+                <li><a href="projects.html" class="nav-item" data-text="Projects">Projects</a></li>
+                <li><a href="resume.html" class="nav-item" data-text="Resume">Resume</a></li>
+                <li><a href="notifications.html" class="nav-item" data-text="Updates">Updates</a></li>
+                <li><a href="contact.html" class="nav-item" data-text="Contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="admin-page-content container">
+        <section class="admin-hero section-spacing">
+            <h2 class="section-title" data-aos="fade-right" data-aos-delay="200">
+                <span class="title-accent"></span> Admin Panel
+            </h2>
+            <p class="section-subtitle" data-aos="fade-left" data-aos-delay="400">Manage your portfolio projects and content.</p>
+
+            <div class="admin-controls">
+                <button id="adminLogoutBtn" class="btn btn-secondary animate-btn ripple-effect" data-aos="zoom-in" data-aos-delay="500">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+
+            <section class="project-management-section section-spacing">
+                <div class="card glowing-border glassmorphism" data-aos="fade-up" data-aos-delay="600">
+                    <h3>Add New Project</h3>
+                    <form id="addProjectForm" class="add-project-form">
+                        <div class="form-group">
+                            <label for="projectTitle">Project Title</label>
+                            <input type="text" id="projectTitle" name="projectTitle" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="projectDescription">Description</label>
+                            <textarea id="projectDescription" name="projectDescription" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="projectImage">Image URL</label>
+                            <input type="url" id="projectImage" name="projectImage" placeholder="assets/images/new_project.webp" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="projectLiveDemo">Live Demo URL (optional)</label>
+                            <input type="url" id="projectLiveDemo" name="projectLiveDemo">
+                        </div>
+                        <div class="form-group">
+                            <label for="projectCode">Code URL (optional)</label>
+                            <input type="url" id="projectCode" name="projectCode">
+                        </div>
+                        <button type="submit" class="btn btn-primary animate-btn ripple-effect">
+                            <i class="fas fa-plus-circle"></i> Add Project
+                        </button>
+                    </form>
+                    <div id="addProjectMessage" class="form-success-message">
+                        <i class="fas fa-check-circle success-icon"></i>
+                        <p>Project added successfully!</p>
+                    </div>
+                </div>
+
+                <div class="card glowing-border glassmorphism" data-aos="fade-up" data-aos-delay="700">
+                    <h3>Existing Projects</h3>
+                    <div id="projectsList" class="projects-list">
+                        <!-- Projects will be loaded here dynamically -->
+                        <p class="section-subtitle no-projects-message">No projects yet. Add one above!</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="notification-management-section section-spacing">
+                <div class="card glowing-border glassmorphism" data-aos="fade-up" data-aos-delay="800">
+                    <h3>Add New Update</h3>
+                    <form id="addNotificationForm" class="add-project-form"> <!-- Reusing form styles -->
+                        <div class="form-group">
+                            <label for="notificationTitle">Update Title</label>
+                            <input type="text" id="notificationTitle" name="notificationTitle" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="notificationContent">Content</label>
+                            <textarea id="notificationContent" name="notificationContent" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="notificationIconClass">Icon Class (e.g., fas fa-rocket)</label>
+                            <input type="text" id="notificationIconClass" name="notificationIconClass" value="fas fa-info-circle" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="notificationAccentClass">Accent Color</label>
+                            <select id="notificationAccentClass" name="notificationAccentClass" required>
+                                <option value="text-accent-primary">Blue</option>
+                                <option value="text-accent-secondary">Cyan</option>
+                                <option value="text-warning">Warning (Yellow)</option>
+                                <option value="text-success">Success (Green)</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-secondary animate-btn ripple-effect">
+                            <i class="fas fa-plus-circle"></i> Add Update
+                        </button>
+                    </form>
+                    <div id="addNotificationMessage" class="form-success-message">
+                        <i class="fas fa-check-circle success-icon"></i>
+                        <p>Update added successfully!</p>
+                    </div>
+                </div>
+
+                <div class="card glowing-border glassmorphism" data-aos="fade-up" data-aos-delay="900">
+                    <h3>Existing Updates</h3>
+                    <div id="notificationsList" class="projects-list">
+                        <!-- Notifications will be loaded here dynamically -->
+                        <p class="section-subtitle no-projects-message">No updates yet. Add one above!</p>
+                    </div>
+                </div>
+            </section>
+
+        </section>
+    </main>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="glowing-back-to-top"><i class="fas fa-arrow-up"></i></button>
+
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="assets/js/script.js"></script>
+    <script>
+        // Admin Panel specific JS
+        document.addEventListener('DOMContentLoaded', () => {
+            // Redirect if not logged in
+            if (sessionStorage.getItem('isAdmin') !== 'true') {
+                window.location.href = 'index.html'; // Or redirect to a login page with an error
+            }
+
+            const adminLogoutBtn = document.getElementById('adminLogoutBtn');
+            if (adminLogoutBtn) {
+                adminLogoutBtn.addEventListener('click', () => {
+                    sessionStorage.removeItem('isAdmin'); // Clear login status
+                    window.location.href = 'index.html'; // Redirect to home or login page
+                });
+            }
+
+            // --- Project Management ---
+            const addProjectForm = document.getElementById('addProjectForm');
+            const projectsList = document.getElementById('projectsList');
+            const addProjectMessage = document.getElementById('addProjectMessage');
+
+            let projects = []; // Will be populated from API
+
+            async function fetchProjects() {
+                try {
+                    const response = await fetch(`${BASE_API_URL}/projects`);
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    projects = await response.json();
+                    renderProjects();
+                } catch (error) {
+                    console.error('Error fetching projects:', error);
+                    projectsList.innerHTML = '<p class="section-subtitle no-projects-message">Failed to load projects. Please check the backend server.</p>';
+                }
+            }
+
+            function renderProjects() {
+                projectsList.innerHTML = ''; // Clear current list
+                if (projects.length === 0) {
+                    projectsList.innerHTML = '<p class="section-subtitle no-projects-message">No projects yet. Add one above!</p>';
+                    return;
+                }
+
+                projects.forEach((project, index) => {
+                    const projectCard = document.createElement('div');
+                    projectCard.classList.add('project-card', 'glowing-border', 'glassmorphism');
+                    projectCard.setAttribute('data-aos', 'fade-up');
+                    projectCard.setAttribute('data-aos-delay', (index * 100 + 100).toString());
+
+                    projectCard.innerHTML = `
+                        <img src="${project.image}" alt="${project.title} Thumbnail" class="project-thumbnail">
+                        <div class="project-info">
+                            <h4>${project.title}</h4>
+                            <p>${project.description}</p>
+                            <div class="project-actions">
+                                ${project.liveDemo ? `<a href="${project.liveDemo}" target="_blank" rel="noopener noreferrer" class="btn btn-demo ripple-effect"><i class="fas fa-external-link-alt"></i> Demo</a>` : ''}
+                                ${project.code ? `<a href="${project.code}" target="_blank" rel="noopener noreferrer" class="btn btn-code ripple-effect"><i class="fab fa-github"></i> Code</a>` : ''}
+                                <button class="btn btn-danger ripple-effect delete-project-btn" data-id="${project.id}"><i class="fas fa-trash"></i> Delete</button>
+                            </div>
+                        </div>
+                    `;
+                    projectsList.appendChild(projectCard);
+                });
+
+                // Add event listeners for delete buttons
+                projectsList.querySelectorAll('.delete-project-btn').forEach(button => {
+                    button.addEventListener('click', async (e) => {
+                        const projectIdToDelete = e.currentTarget.dataset.id;
+                        try {
+                            const response = await fetch(`${BASE_API_URL}/projects/${projectIdToDelete}`, {
+                                method: 'DELETE'
+                            });
+                            if (!response.ok) {
+                                throw new Error(`HTTP error! status: ${response.status}`);
+                            }
+                            await fetchProjects(); // Re-fetch and re-render the list
+                        } catch (error) {
+                            console.error('Error deleting project:', error);
+                            alert('Failed to delete project. Please try again.');
+                        }
+                        AOS.refresh(); // Refresh AOS
+                    });
+                });
+            }
+
+            // Initial render
+            fetchProjects();
+
+            if (addProjectForm) {
+                addProjectForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+
+                    const newProject = {
+                        title: addProjectForm.projectTitle.value,
+                        description: addProjectForm.projectDescription.value,
+                        image: addProjectForm.projectImage.value,
+                        liveDemo: addProjectForm.projectLiveDemo.value || '',
+                        code: addProjectForm.projectCode.value || ''
+                    };
+
+                    try {
+                        const response = await fetch(`${BASE_API_URL}/projects`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(newProject)
+                        });
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        await fetchProjects(); // Re-fetch and re-render
+                        addProjectForm.reset(); // Clear form
+
+                        // Show success message
+                        addProjectMessage.classList.add('show');
+                        setTimeout(() => {
+                            addProjectMessage.classList.remove('show');
+                        }, 3000);
+                    } catch (error) {
+                        console.error('Error adding project:', error);
+                        alert('Failed to add project. Please try again.');
+                    }
+                    AOS.refresh(); // Refresh AOS
+                });
+            }
+
+            // --- Notification Management ---
+            const addNotificationForm = document.getElementById('addNotificationForm');
+            const notificationsList = document.getElementById('notificationsList');
+            const addNotificationMessage = document.getElementById('addNotificationMessage');
+
+            let notifications = []; // Will be populated from API
+
+            async function fetchNotifications() {
+                try {
+                    const response = await fetch(`${BASE_API_URL}/notifications`);
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    notifications = await response.json();
+                    renderNotifications();
+                } catch (error) {
+                    console.error('Error fetching notifications:', error);
+                    notificationsList.innerHTML = '<p class="section-subtitle no-projects-message">Failed to load updates. Please check the backend server.</p>';
+                }
+            }
+
+            function renderNotifications() {
+                notificationsList.innerHTML = ''; // Clear current list
+                if (notifications.length === 0) {
+                    notificationsList.innerHTML = '<p class="section-subtitle no-projects-message">No updates yet. Add one above!</p>';
+                    return;
+                }
+
+                notifications.forEach((notification, index) => {
+                    const notificationCard = document.createElement('div');
+                    notificationCard.classList.add('notification-card', 'glowing-border', 'glassmorphism');
+                    notificationCard.setAttribute('data-aos', 'fade-up');
+                    notificationCard.setAttribute('data-aos-delay', (index * 100 + 100).toString());
+
+                    notificationCard.innerHTML = `
+                        <div class="notification-icon">
+                            <i class="${notification.iconClass} ${notification.accentClass}"></i>
+                        </div>
+                        <div class="notification-content">
+                            <h3>${notification.title}</h3>
+                            <p>${notification.content}</p>
+                            <span class="notification-date">${notification.date}</span>
+                            <div class="project-actions" style="justify-content: flex-start; margin-top: 10px;">
+                                <button class="btn btn-danger ripple-effect delete-notification-btn" data-id="${notification.id}"><i class="fas fa-trash"></i> Delete</button>
+                            </div>
+                        </div>
+                    `;
+                    notificationsList.appendChild(notificationCard);
+                });
+
+                // Add event listeners for delete buttons
+                notificationsList.querySelectorAll('.delete-notification-btn').forEach(button => {
+                    button.addEventListener('click', async (e) => {
+                        const notificationIdToDelete = e.currentTarget.dataset.id;
+                        try {
+                            const response = await fetch(`${BASE_API_URL}/notifications/${notificationIdToDelete}`, {
+                                method: 'DELETE'
+                            });
+                            if (!response.ok) {
+                                throw new Error(`HTTP error! status: ${response.status}`);
+                            }
+                            await fetchNotifications(); // Re-fetch and re-render the list
+                        } catch (error) {
+                            console.error('Error deleting notification:', error);
+                            alert('Failed to delete update. Please try again.');
+                        }
+                        AOS.refresh(); // Refresh AOS
+                        if (typeof window.updateNotificationCountBadge === 'function') {
+                            window.updateNotificationCountBadge(); // Update the nav badge (still client-side counter)
+                        }
+                    });
+                });
+                if (typeof window.updateNotificationCountBadge === 'function') {
+                    window.updateNotificationCountBadge(); // Update the nav badge
+                }
+            }
+
+            // Initial render of notifications
+            fetchNotifications();
+
+            if (addNotificationForm) {
+                addNotificationForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+
+                    const today = new Date();
+                    const options = { month: 'short', day: 'numeric', year: 'numeric' };
+                    const formattedDate = today.toLocaleDateString('en-US', options);
+
+                    const newNotification = {
+                        title: addNotificationForm.notificationTitle.value,
+                        content: addNotificationForm.notificationContent.value,
+                        date: formattedDate, // Auto-generate current date
+                        iconClass: addNotificationForm.notificationIconClass.value,
+                        accentClass: addNotificationForm.notificationAccentClass.value
+                    };
+
+                    try {
+                        const response = await fetch(`${BASE_API_URL}/notifications`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(newNotification)
+                        });
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        await fetchNotifications(); // Re-fetch and re-render
+
+                        // Increment the new updates counter (client-side for now)
+                        let newUpdatesCounter = parseInt(localStorage.getItem('newUpdatesCounter') || '0');
+                        newUpdatesCounter++;
+                        localStorage.setItem('newUpdatesCounter', newUpdatesCounter.toString());
+                        
+                        addNotificationForm.reset(); // Clear form
+                        // Reset icon class to default for next input
+                        document.getElementById('notificationIconClass').value = "fas fa-info-circle";
+                        document.getElementById('notificationAccentClass').value = "text-accent-primary";
+
+                        // Show success message
+                        addNotificationMessage.classList.add('show');
+                        setTimeout(() => {
+                            addNotificationMessage.classList.remove('show');
+                        }, 3000);
+                    } catch (error) {
+                        console.error('Error adding notification:', error);
+                        alert('Failed to add update. Please try again.');
+                    }
+                    AOS.refresh(); // Refresh AOS
+                });
+            }
+        });
+    </script>
+</body>
+</html>

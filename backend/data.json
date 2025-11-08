@@ -1,0 +1,54 @@
+{
+    "projects": [
+        {
+            "id": "a1b2c3d4-e5f6-7890-1234-567890abcdef",
+            "title": "AI-Powered Chatbot",
+            "description": "A smart conversational agent built with Python and a custom NLP model, integrated with a web interface.",
+            "image": "assets/images/project1.webp",
+            "liveDemo": "https://demo.krishgoyal.com/ai-chatbot",
+            "code": "https://github.com/krishgoyal/ai-chatbot"
+        },
+        {
+            "id": "b2c3d4e5-f6a7-8901-2345-67890abcdef0",
+            "title": "E-commerce Backend API",
+            "description": "Robust RESTful API for an e-commerce platform using Django REST Framework, with authentication and product management.",
+            "image": "assets/images/project2.webp",
+            "liveDemo": "https://demo.krishgoyal.com/ecommerce-api",
+            "code": "https://github.com/krishgoyal/ecommerce-api"
+        },
+        {
+            "id": "c3d4e5f6-a7b8-9012-3456-7890abcdef01",
+            "title": "Interactive Data Dashboard",
+            "description": "A dynamic dashboard visualizing complex datasets using Plotly.js and Flask, enabling interactive data exploration.",
+            "image": "assets/images/project3.webp",
+            "liveDemo": "https://demo.krishgoyal.com/data-dashboard",
+            "code": "https://github.com/krishgoyal/data-dashboard"
+        },
+        {
+            "id": "d4e5f6a7-b8c9-0123-4567-890abcdef012",
+            "title": "Real-time Chat Application",
+            "description": "A web-based chat application with real-time messaging using WebSockets and Node.js (or Python's websockets library).",
+            "image": "assets/images/project1.webp",
+            "liveDemo": "https://demo.krishgoyal.com/chat-app",
+            "code": "https://github.com/krishgoyal/chat-app"
+        }
+    ],
+    "notifications": [
+        {
+            "id": "e5f6a7b8-c9d0-1234-5678-90abcdef0123",
+            "title": "New Project: AI-Powered Portfolio Assistant!",
+            "content": "Excited to announce the launch of my latest project: an AI-powered assistant designed to help manage and update portfolios automatically. Check it out!",
+            "date": "Jan 15, 2024",
+            "iconClass": "fas fa-rocket",
+            "accentClass": "text-accent-primary"
+        },
+        {
+            "id": "f6a7b8c9-d0e1-2345-6789-0abcdef01234",
+            "title": "Website Refresh: New Animations & Performance Boosts",
+            "content": "This portfolio just got a major refresh! Enjoy smoother animations, improved performance, and a more immersive user experience. Details on the blog soon!",
+            "date": "Jan 10, 2024",
+            "iconClass": "fas fa-magic",
+            "accentClass": "text-accent-secondary"
+        }
+    ]
+}

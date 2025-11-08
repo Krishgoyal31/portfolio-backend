@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krish Goyal - Home</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+    <!-- Run Instructions:
+         1. Create the necessary folder structure:
+            - assets/css/
+            - assets/js/
+            - assets/images/
+            - assets/resume/
+            - backend/
+         2. Place style.css in assets/css/
+         3. Place script.js in assets/js/
+         4. Place your photo (e.g., krish_goyal_photo.webp) in assets/images/
+         5. Place project thumbnails (e.g., project1.webp, project2.webp, project3.webp) in assets/images/
+         6. Place your resume (krish_goyal_resume.pdf) in assets/resume/
+         7. Create `backend/app.py`, `backend/requirements.txt`, and `backend/data.json` (initial data is provided by `app.py` if not present).
+         8. **Backend Setup (Python Flask):**
+            - Navigate to the `backend/` directory in your terminal.
+            - Install dependencies: `pip install -r requirements.txt` (This requires Python and pip installed).
+            - Run the Flask server: `python app.py` (The server will run on `http://127.0.0.1:5000` by default).
+         9. **Frontend Setup:**
+            - Open `index.html` in your web browser (you can use a tool like VS Code's "Live Server" extension for best results, running on a different port like `http://127.0.0.1:5500`).
+            - Ensure both the Flask backend and your frontend server are running simultaneously.
+    -->
+</head>
+<body data-page="home">
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"></div>
+    <div class="custom-cursor-follower"></div>
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="preloader-text">
+            <span class="char-k">K</span><span class="char-g">G</span>
+        </div>
+    </div>
+
+    <!-- Page Transition Overlay -->
+    <div id="page-transition-overlay"></div>
+
+    <!-- Home Page Background Animation Elements -->
+    <div class="home-animated-background">
+        <div class="animated-orb orb-1"></div>
+        <div class="animated-orb orb-2"></div>
+        <div class="animated-orb orb-3"></div>
+        <div class="animated-orb orb-4"></div>
+    </div>
+
+    <!-- Main Content -->
+    <header class="main-header">
+        <nav class="navbar">
+            <a href="#" class="nav-logo" id="adminLoginTrigger">KG</a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-item" data-text="Home">Home</a></li>
+                <li><a href="about.html" class="nav-item" data-text="About">About</a></li>
+                <li><a href="projects.html" class="nav-item" data-text="Projects">Projects</a></li>
+                <li><a href="resume.html" class="nav-item" data-text="Resume">Resume</a></li>
+                <li><a href="notifications.html" class="nav-item" data-text="Updates">Updates</a></li>
+                <li><a href="contact.html" class="nav-item" data-text="Contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="home-page-content container">
+        <section class="hero-section text-center">
+            <h1 class="hero-title" data-aos="fade-up" data-aos-delay="500">
+                Hi, I'm <span class="highlight-name">Krish Goyal</span> — <br>
+                <span class="typewriter-text" data-type-strings='["Python Developer", "AI Builder", "Web Innovator"]'></span>
+            </h1>
+            <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="1000">Turning code into creativity.</p>
+            <div class="hero-buttons" data-aos="fade-up" data-aos-delay="1500">
+                <a href="projects.html" class="btn btn-primary animate-btn ripple-effect">
+                    <i class="fas fa-rocket"></i> View My Projects
+                </a>
+                <a href="assets/resume/krish_goyal_resume.pdf" download="krish_goyal_resume.pdf" class="btn btn-secondary animate-btn ripple-effect">
+                    <i class="fas fa-download"></i> Download Resume
+                </a>
+            </div>
+        </section>
+
+        <section class="social-icons" data-aos="fade-in" data-aos-delay="2000">
+            <a href="https://linkedin.com/in/krishgoyal" target="_blank" rel="noopener noreferrer" class="social-icon-item glowing-social-icon">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://github.com/krishgoyal" target="_blank" rel="noopener noreferrer" class="social-icon-item glowing-social-icon">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="mailto:krish.goyal@example.com" class="social-icon-item glowing-social-icon">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </section>
+    </main>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="glowing-back-to-top"><i class="fas fa-arrow-up"></i></button>
+
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://unpkg.com/typewriter-effect@2.18.2/dist/core.js"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
