@@ -6,7 +6,7 @@
  */
 
 // Define the base URL for your Flask API
-const BASE_API_URL = 'http://127.0.0.1:5000/api'; // Adjust if your Flask server runs on a different host/port
+const BASE_API_URL = 'https://portfolio-backend-0biq.onrender.com/api'; // Adjust if your Flask server runs on a different host/port
 
 document.addEventListener('DOMContentLoaded', () => {
     // Add a class to body once JS is loaded, useful for CSS to prevent flicker
