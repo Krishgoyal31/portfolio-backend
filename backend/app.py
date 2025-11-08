@@ -85,7 +85,9 @@ if not os.path.exists(DATA_FILE) or os.stat(DATA_FILE).st_size == 0:
     os.makedirs(os.path.dirname(DATA_FILE), exist_ok=True)
     save_data(initial_data)
 
-
+@app.route('/api/health', methods=['GET'])
+def health_check():
+    return jsonify({"status": "ok"}), 200
 # --- Admin Login ---
 @app.route('/api/admin/login', methods=['POST'])
 def admin_login():
